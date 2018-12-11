@@ -731,8 +731,8 @@ static ResultCode GetInfo(u64* result, u64 info_id, u64 handle, u64 info_sub_id)
         NewMapRegionBaseAddr = 14,
         NewMapRegionSize = 15,
         // 3.0.0+
-        IsVirtualAddressMemoryEnabled = 16,
-        PersonalMmHeapUsage = 17,
+        ExtraResourceSize = 16,
+        ExtraResourceUsage = 17,
         TitleId = 18,
         // 4.0.0+
         PrivilegedProcessId = 19,
@@ -756,8 +756,8 @@ static ResultCode GetInfo(u64* result, u64 info_id, u64 handle, u64 info_sub_id)
     case GetInfoType::NewMapRegionSize:
     case GetInfoType::TotalMemoryUsage:
     case GetInfoType::TotalHeapUsage:
-    case GetInfoType::IsVirtualAddressMemoryEnabled:
-    case GetInfoType::PersonalMmHeapUsage:
+    case GetInfoType::ExtraResourceSize:
+    case GetInfoType::ExtraResourceUsage:
     case GetInfoType::TitleId:
     case GetInfoType::UserExceptionContextAddr: {
         if (info_sub_id != 0) {
@@ -819,8 +819,8 @@ static ResultCode GetInfo(u64* result, u64 info_id, u64 handle, u64 info_sub_id)
             *result = process->VMManager().GetTotalHeapUsage();
             return RESULT_SUCCESS;
 
-        case GetInfoType::IsVirtualAddressMemoryEnabled:
-            *result = process->IsVirtualMemoryEnabled();
+        case GetInfoType::ExtraResourceSize:
+            *result = process->GetExtraResourceSize();
             return RESULT_SUCCESS;
 
         case GetInfoType::TitleId:

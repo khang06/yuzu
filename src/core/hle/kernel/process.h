@@ -183,8 +183,9 @@ public:
         return capabilities.GetPriorityMask();
     }
 
-    u32 IsVirtualMemoryEnabled() const {
-        return is_virtual_address_memory_enabled;
+    /// Gets the size of the extra resource memory in bytes.
+    u64 GetExtraResourceSize() const {
+        return extra_resource_size;
     }
 
     /// Whether this process is an AArch64 or AArch32 process.
@@ -282,7 +283,9 @@ private:
 
     /// The default CPU for this process, threads are scheduled on this cpu by default.
     u8 ideal_processor = 0;
-    u32 is_virtual_address_memory_enabled = 0;
+
+    /// Size of the extra resource memory in bytes.
+    u64 extra_resource_size = 0;
 
     /// The Thread Local Storage area is allocated as processes create threads,
     /// each TLS area is 0x200 bytes, so one page (0x1000) is split up in 8 parts, and each part
